@@ -1,0 +1,33 @@
+services:
+  bloodapp:
+    #build: .
+    image: ${ECR_REPOSITORY}/bloodapp:app
+    ports: 
+      - "80:80"
+    container_name: bloodapp
+    networks:
+      - bloodnw
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    #build: database
+    image: ${ECR_REPOSITORY}/bloodapp:db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    networks:
+      - bloodnw
+    volumes:
+      - dbvol:/var/lib/mysql
+
+
+networks:
+  bloodnw:
+    driver: bridge
+
+volumes:
+  dbvol:
+    
