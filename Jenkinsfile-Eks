@@ -18,7 +18,7 @@ pipeline {
         }
         stage ("checkout") {
             steps{
-                git "https://github.com/Kajjayamsriram/bloodbank_terraform.git"
+                git "https://github.com/Kajjayamsriram/bloodcamp.php.git"
             }
         }
         stage("CQA") {
